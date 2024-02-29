@@ -20,4 +20,11 @@
         User,
         Admin
     }
+
+    public enum AllRolesEnum
+    {
+        SuperAdmin,
+        Admin,
+        User
+    }
 }
