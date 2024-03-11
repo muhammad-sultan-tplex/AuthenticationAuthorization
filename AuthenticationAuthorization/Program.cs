@@ -73,6 +73,12 @@ builder.Services.AddAuthorization(options => {
         policy => policy.RequireRole(System.Enum.GetNames(typeof(SuperAdminEnum))));
 });
 
+builder.Services.AddCors(Options => Options.AddPolicy(name: "UserOrigins",
+    policy =>
+    {
+        policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+    }));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -83,7 +89,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("UserOrigins");
 //app.UseAuthentication();
 app.UseAuthorization();
 
