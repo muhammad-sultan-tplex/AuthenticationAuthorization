@@ -35,10 +35,11 @@ namespace AuthenticationAuthorization.Controllers
 
             List<RoleDto> userRoles = _mapper.Map<List<RoleDto>>(roles);
 
-            var result = Pagination<RoleDto>.ToPagedList(userRoles, PageNumber, PageSize);
+            var result = PagedResultDto<RoleDto>.ToPagedList(userRoles, PageNumber, PageSize);
 
             return Ok(new ResponseModel<RoleDto> { Result = result });
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Insert([FromBody] string Name)
