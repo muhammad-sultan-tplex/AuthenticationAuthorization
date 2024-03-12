@@ -2,9 +2,9 @@
 
 namespace AuthenticationAuthorization.Generics
 {
-    public class Pagination<T> where T : class
+    public class PagedResultDto<T> where T : class
     {
-        public Pagination(List<T> items, int totalCount, int pageNumber, int pageSize)
+        public PagedResultDto(List<T> items, int totalCount, int pageNumber, int pageSize)
         {
             Items = items;
             TotalCount = totalCount;
@@ -21,12 +21,12 @@ namespace AuthenticationAuthorization.Generics
         public List<T> Items { get; set; }
 
 
-        public static Pagination<T> ToPagedList(List<T> list, int page, int pageSize)
+        public static PagedResultDto<T> ToPagedList(List<T> list, int page, int pageSize)
         {
             int count = list.Count();
             var items = list.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
-            return new Pagination<T>(items, count, page, pageSize);
+            return new PagedResultDto<T>(items, count, page, pageSize);
         }
     }
 }

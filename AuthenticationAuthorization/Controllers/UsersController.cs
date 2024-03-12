@@ -37,16 +37,15 @@ namespace AuthenticationAuthorization.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll(int PageNumber, int PageSize)
+        public async Task<PagedResultDto<UserDto>> GetAll(int PageNumber, int PageSize)
         {
-            var ss = _IUserRepository.Name;
             var users = await _userManager.Users.Include(r => r.Role).ToListAsync();
 
             List<UserDto> usersDto = _mapper.Map<List<UserDto>>(users);
 
-            var result = Pagination<UserDto>.ToPagedList(usersDto, PageNumber, PageSize);
+            var result = PagedResultDto<UserDto>.ToPagedList(usersDto, PageNumber, PageSize);
 
-            return Ok(new ResponseModel<UserDto> { Result = result });
+            return result;
         }
 
         [HttpPost]

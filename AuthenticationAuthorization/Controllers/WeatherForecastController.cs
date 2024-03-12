@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AuthenticationAuthorization.Controllers
 {
-    //[Authorize(Policy = "UserAdmin")]
+    [Authorize(Policy = "UserAdmin")]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase

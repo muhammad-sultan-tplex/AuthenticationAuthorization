@@ -5,7 +5,7 @@ namespace AuthenticationAuthorization.Models
 {
     public class ResponseModel<T> where T: class
     {
-        public Pagination<T> Result { get; set; }
+        public PagedResultDto<T> Result { get; set; }
     }
 
     public class ResponseModel
